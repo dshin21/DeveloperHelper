@@ -22,7 +22,43 @@
 .App-link {
   color: #61dafb;
 }
+.row {
+  height: 100vh;
+}
+.col {
+  padding: 0;
+}
+#leftPanel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: auto; */
+  /* grid-gap: 10rem; */
+}
+#leftTop {
+  background-color: #61dafb;
+  flex-grow: 1;
+}
+#leftBot {
+  border-top: 5px solid black;
+  background-color: rosybrown;
+  flex-grow: 1;
+}
 
+#rightPanel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#rightTop {
+  background-color: #61dafb;
+  flex-grow: 1;
+}
+#rightBot {
+  border-top: 5px solid black;
+  background-color: rosybrown;
+  flex-grow: 1;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
