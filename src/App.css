@@ -24,9 +24,11 @@
 }
 .row {
   height: 100vh;
+  display: flex;
 }
 .col {
   padding: 0;
+  flex-grow: 1;
 }
 #leftPanel {
   height: 100%;
@@ -50,10 +52,16 @@
   display: flex;
   flex-direction: column;
 }
+
+/* right top */
 #rightTop {
   background-color: #61dafb;
   flex-grow: 1;
 }
+.list-item {
+  border: 0.01rem solid grey;
+}
+
 #rightBot {
   border-top: 5px solid black;
   background-color: rosybrown;
