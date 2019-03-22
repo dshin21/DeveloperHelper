@@ -17,10 +17,26 @@ export class LanguageCards extends Component {
 
         return (
           <Grid container className={classes.root} spacing={16}>
-              <Grid item xs={12}>
+              <Grid item xs={4}>
                   <LanguageCard languageName='js'/>
               </Grid>
+              <Grid item xs={4}>
+                  <LanguageCard languageName='py'/>
+              </Grid>
+              <Grid item xs={4}>
+                  <LanguageCard languageName='java'/>
+              </Grid>
+              <Grid item xs={4}>
+                  <LanguageCard languageName='html'/>
+              </Grid>
+              <Grid item xs={4}>
+                  <LanguageCard languageName='css'/>
+              </Grid>
+              <Grid item xs={4}>
+                  <LanguageCard languageName='cpp'/>
+              </Grid>
           </Grid>
+
         );
     }
 }
@@ -34,7 +50,7 @@ const styles = theme => ({
         maxWidth: 345,
     },
     media: {
-        height: 140,
+        height: 150,
     },
 });
 

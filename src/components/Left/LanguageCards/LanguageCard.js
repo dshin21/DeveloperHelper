@@ -14,6 +14,10 @@ export class LanguageCard extends Component {
         };
     };
 
+    onClickCard = () => {
+        //TODO
+    };
+
     render() {
         const {classes} = this.props;
 
@@ -23,8 +27,9 @@ export class LanguageCard extends Component {
                   <CardMedia
                     className={classes.media}
                     image={require(`./images/${this.state.languageName}.png`)}
-                    title="JavaScript"
+                    title={this.state.languageName}
                     style={styles.media}
+                    onClick={this.onClickCard}
                   />
               </CardActionArea>
           </Card>
