@@ -6,7 +6,7 @@ export default axios.create({
     params:  {
         part:       'snippet',
         order:      'date',
-        maxResults: 5,
+        maxResults: 3,
         key:        KEY
     }
 });

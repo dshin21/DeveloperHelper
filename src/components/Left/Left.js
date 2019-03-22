@@ -10,6 +10,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 
 import Youtube from './Youtube/components/Youtube';
+import LanguageCards from './LanguageCards/LanguageCards';
+
+const style_override = {
+    display: 'inline-block'
+};
 
 export class Left extends Component {
     constructor(props) {
@@ -21,7 +26,10 @@ export class Left extends Component {
         const {classes} = this.props;
 
         return (
-          <Grid container className={classes.root} spacing={16}>
+          <Grid container className={classes.root} spacing={16} style={style_override}>
+              <Grid item xs={12}>
+                  <LanguageCards/>
+              </Grid>
               <Grid item xs={12}>
                   <div className={classes.rootDrawer}>
                       <ExpansionPanel>
@@ -37,9 +45,9 @@ export class Left extends Component {
                               <Typography className={classes.heading}>Expansion Panel 2</Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
-                             {
-                                 //TODO: stackoverflow
-                             }
+                              {
+                                  //TODO: stackoverflow
+                              }
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
                   </div>
