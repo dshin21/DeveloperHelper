@@ -22,6 +22,18 @@ export class Left extends Component {
         this.state = {};
     };
 
+    componentDidMount() {
+        (function() {
+            var cx = '011491087869558482550:dshmqffh9qe';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    }
+
     render() {
         const {classes} = this.props;
 
@@ -40,16 +52,14 @@ export class Left extends Component {
                               <Youtube/>
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
-                      <ExpansionPanel>
-                          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                              <Typography className={classes.heading}>Expansion Panel 2</Typography>
-                          </ExpansionPanelSummary>
-                          <ExpansionPanelDetails>
-                              {
-                                  //TODO: stackoverflow
-                              }
-                          </ExpansionPanelDetails>
-                      </ExpansionPanel>
+                      {/*<ExpansionPanel>*/}
+                          {/*<ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>*/}
+                              {/*<Typography className={classes.heading}>Expansion Panel 2</Typography>*/}
+                          {/*</ExpansionPanelSummary>*/}
+                          {/*<ExpansionPanelDetails>*/}
+                          {/**/}
+                          {/*</ExpansionPanelDetails>*/}
+                      {/*</ExpansionPanel>*/}
                   </div>
               </Grid>
           </Grid>

@@ -15,7 +15,7 @@ export class LanguageCard extends Component {
     };
 
     onClickCard = () => {
-        //TODO
+        //TODO: when clicked, fill all search bars w/ the language
     };
 
     render() {
