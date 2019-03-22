@@ -23,10 +23,10 @@ export class Left extends Component {
         return (
           <Grid container className={classes.root} spacing={16}>
               <Grid item xs={12}>
-                  <div className={classes.root}>
+                  <div className={classes.rootDrawer}>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                              <Typography className={classes.heading}>Expansion Panel 1</Typography>
+                              <Typography className={classes.heading}>Youtube</Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
                               <Youtube/>
@@ -37,11 +37,9 @@ export class Left extends Component {
                               <Typography className={classes.heading}>Expansion Panel 2</Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
-                              <Typography>
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                                  ex,
-                                  sit amet blandit leo lobortis eget.
-                              </Typography>
+                             {
+                                 //TODO: stackoverflow
+                             }
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
                   </div>
@@ -56,10 +54,13 @@ Left.propTypes = {
 };
 
 const styles = theme => ({
-    root:    {
+    root:       {
         width: '50%',
     },
-    heading: {
+    rootDrawer: {
+        width: '100%',
+    },
+    heading:    {
         fontSize:   theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
