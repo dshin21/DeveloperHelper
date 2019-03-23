@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Youtube from './Youtube/components/Youtube';
 import LanguageCards from './LanguageCards/LanguageCards';
+import SpotifyPlayer from 'react-spotify-player';
 
 const style_override = {
     display: 'inline-block'
@@ -21,18 +22,6 @@ export class Left extends Component {
         super(props);
         this.state = {};
     };
-
-    componentDidMount() {
-        (function() {
-            var cx = '011491087869558482550:dshmqffh9qe';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    }
 
     render() {
         const {classes} = this.props;
@@ -52,14 +41,34 @@ export class Left extends Component {
                               <Youtube/>
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
-                      {/*<ExpansionPanel>*/}
-                          {/*<ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>*/}
-                              {/*<Typography className={classes.heading}>Expansion Panel 2</Typography>*/}
-                          {/*</ExpansionPanelSummary>*/}
-                          {/*<ExpansionPanelDetails>*/}
-                          {/**/}
-                          {/*</ExpansionPanelDetails>*/}
-                      {/*</ExpansionPanel>*/}
+                      <ExpansionPanel>
+                          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon style={{color: '#ffffff'}}/>}
+                                                 style={{background: '#000000'}}>
+                              <Typography className={classes.heading}
+                                          style={{color: '#ffffff'}}>
+                                  Spotify
+                              </Typography>
+                          </ExpansionPanelSummary>
+                          <ExpansionPanelDetails style={{background: '#000000'}}>
+                              <SpotifyPlayer
+                                uri="spotify:playlist:2lrSd3Nk2Pe1j9sByZzwzK"
+                                size={{
+                                    width:  '100%',
+                                    height: 300,
+                                }}
+                                view='list'
+                                theme='white'
+                              />
+                          </ExpansionPanelDetails>
+                      </ExpansionPanel>
+                      <ExpansionPanel>
+                          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                              <Typography className={classes.heading}>Stack overflow</Typography>
+                          </ExpansionPanelSummary>
+                          <ExpansionPanelDetails>
+
+                          </ExpansionPanelDetails>
+                      </ExpansionPanel>
                   </div>
               </Grid>
           </Grid>
