@@ -14,7 +14,7 @@ class Youtube extends Component {
     };
 
     componentDidMount() {
-        this.onTermSubmit('buildings');
+        this.onTermSubmit('JavaScript');
     }
 
     onVideoSelect = (video) => {

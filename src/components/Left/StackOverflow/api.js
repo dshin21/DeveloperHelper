@@ -6,5 +6,6 @@ export default axios.create({
         order:   'desc',
         sort:    'activity',
         site:    'stackoverflow',
+        pagesize: 10
     }
 });
