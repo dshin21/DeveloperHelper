@@ -5,7 +5,6 @@ export default axios.create({
     params:  {
         order:   'desc',
         sort:    'activity',
-        intitle: 'javascript server',
         site:    'stackoverflow',
     }
 });

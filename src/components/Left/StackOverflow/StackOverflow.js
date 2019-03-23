@@ -20,6 +20,9 @@ class StackOverflow extends Component {
 
     onTermSubmit = async () => {
         const response = await stackoverflow.get('/search', {
+            params: {
+                intitle: this.state.term,
+            }
         });
         console.log(response);
     };
