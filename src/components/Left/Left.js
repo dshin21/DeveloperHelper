@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Youtube from './Youtube/components/Youtube';
 import LanguageCards from './LanguageCards/LanguageCards';
+import StackOverflow from './StackOverflow/StackOverflow';
 import SpotifyPlayer from 'react-spotify-player';
 
 const style_override = {
@@ -63,10 +64,10 @@ export class Left extends Component {
                       </ExpansionPanel>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                              <Typography className={classes.heading}>Stack overflow</Typography>
+                              <Typography className={classes.heading}>Stack Overflow</Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
-
+                              <StackOverflow/>
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
                   </div>

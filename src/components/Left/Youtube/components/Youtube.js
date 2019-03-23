@@ -20,6 +20,7 @@ class Youtube extends Component {
     onVideoSelect = (video) => {
         this.setState({selectedVideo: video});
     };
+
     onTermSubmit = async (term) => {
         const response = await youtube.get('/search', {
             params: {
