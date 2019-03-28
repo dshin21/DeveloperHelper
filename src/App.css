@@ -56,8 +56,10 @@
 
 /* right top */
 #rightTop {
-  flex-grow: 1;
+  flex: 6;
   position: relative;
+  overflow: auto;
+  border-left: gray solid 1px;
 }
 .list {
   margin: 0;
@@ -67,14 +69,14 @@
   border: 0.01rem solid grey;
 }
 #rightTop button {
-  float: right;
-  padding: 0;
-  margin: 0;
-  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  position: fixed;
 }
 #rightBot {
-  border-top: 5px solid black;
-  flex-grow: 1;
+  border-top: 1px solid gray;
+  border-left: 1px solid gray;
+  flex: 4;
 }
 #rightBot textarea {
   line-height: 2rem;

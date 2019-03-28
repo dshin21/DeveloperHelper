@@ -15,24 +15,44 @@ const styles = theme => ({
 });
 
 class RightTop extends Component {
-  state = {};
   state = {
-    checked: [0]
+    taskComplete: 0,
+    // checked: [0],
+    list: [0]
   };
-
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
+  buttonClick = () => () => {
+    console.log("clieck");
+    const { list } = this.state;
+    const newList = [...list];
+    if (list.length != 0) {
+      newList.push(list[list.length - 1] + 1);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newList.push(0);
     }
-
     this.setState({
-      checked: newChecked
+      list: newList
+    });
+  };
+  handleToggle = value => () => {
+    // const { checked, list } = this.state;
+    const { list, taskComplete } = this.state;
+    const currentIndex = list.indexOf(value);
+    // const newChecked = [...checked];
+    const newList = [...list];
+    let newTaskComplete = taskComplete;
+    newTaskComplete++;
+    // if (currentIndex === -1) {
+    //   newChecked.push(value);
+    //   newList.splice(currentIndex, 1);
+    // } else {
+    //   newChecked.splice(currentIndex, 1);
+    //
+    // }
+    newList.splice(currentIndex, 1);
+    this.setState({
+      // checked: newChecked,
+      taskComplete: newTaskComplete,
+      list: newList
     });
   };
 
@@ -41,36 +61,39 @@ class RightTop extends Component {
 
     return (
       <div id="rightTop">
-        <List className={"a"}>
-          {[0, 1, 2, 3].map(value => (
-            <ListItem key={value} role={undefined} dense button>
-              <Checkbox
-                checked={this.state.checked.indexOf(value) !== -1}
-                tabIndex={-1}
-                disableRipple
-                onClick={this.handleToggle(value)}
-              />
+        <div className="container">
+          <List className={"a"}>
+            {this.state.list.map(value => (
+              <ListItem key={value} role={undefined} dense button>
+                <Checkbox
+                  checked={false}
+                  tabIndex={-1}
+                  disableRipple
+                  onClick={this.handleToggle(value)}
+                />
 
-              <TextField
-                id="standard-bare"
-                className={classes.textField}
-                defaultValue="Bare"
-                margin="normal"
-                fullWidth="true"
-              />
-              {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
-              {/* <ListItemSecondaryAction>
+                <TextField
+                  id="standard-bare"
+                  className={classes.textField}
+                  defaultValue="Bare"
+                  margin="normal"
+                  fullWidth={true}
+                />
+                {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
+                {/* <ListItemSecondaryAction>
               <IconButton aria-label="Comments">
                 <CommentIcon />
               </IconButton>
             </ListItemSecondaryAction> */}
-            </ListItem>
-          ))}
-        </List>
+              </ListItem>
+            ))}
+          </List>
+        </div>
         <Fab
           style={{ padding: 0, margin: 0 }}
           className={"fab"}
           color="secondary"
+          onClick={this.buttonClick()}
         >
           <AddIcon />
         </Fab>
