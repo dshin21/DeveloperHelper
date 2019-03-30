@@ -22,18 +22,16 @@
 .App-link {
   color: #61dafb;
 }
-.row {
-  height: 100vh;
-  display: flex;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.col {
-  padding: 0;
-  flex-grow: 1;
+.MuiPaper-root-106 {
+  margin: 10px;
 }
 #leftPanel {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  max-width: 50vw;
   /* grid-template-columns: auto; */
   /* grid-gap: 10rem; */
 }
@@ -41,25 +39,33 @@
   background-color: #61dafb;
   flex-grow: 1;
 }
-#leftBot {
-  border-top: 5px solid black;
-  background-color: rosybrown;
-  flex-grow: 1;
-}
 
 #rightPanel {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  /* height: 100vh; */
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   background-color: white;
 }
-
+.boxShadow {
+  -webkit-box-shadow: 6px 9px 25px -1px rgba(0, 0, 0, 0.67);
+  -moz-box-shadow: 6px 9px 25px -1px rgba(0, 0, 0, 0.67);
+  box-shadow: 6px 9px 25px -1px rgba(0, 0, 0, 0.67);
+  border-radius: 2rem;
+  margin: 2rem;
+  padding: 1rem;
+}
 /* right top */
 #rightTop {
-  flex: 6;
   position: relative;
+
+  border: white solid 1px;
+  display: grid;
+  grid-template-rows: 18fr 3fr;
+}
+#rightTop .listContainer {
+  max-height: 50vh;
   overflow: auto;
-  border-left: gray solid 1px;
 }
 .list {
   margin: 0;
@@ -68,17 +74,23 @@
 .list-item {
   border: 0.01rem solid grey;
 }
-#rightTop button {
-  top: 2rem;
+#addButton {
+  position: absolute;
   right: 2rem;
-  position: fixed;
+  bottom: 1rem;
 }
 #rightBot {
-  border-top: 1px solid gray;
-  border-left: 1px solid gray;
-  flex: 4;
+  text-align: center;
+}
+.textAreaContainer {
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 #rightBot textarea {
+  border: 0px;
+  width: 100%;
+  height: 100%;
   line-height: 2rem;
   font-size: 1.5rem;
 }
@@ -88,5 +100,18 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+  #leftPanel {
+    max-width: 100vw;
+    /* grid-template-columns: auto; */
+    /* grid-gap: 10rem; */
   }
 }

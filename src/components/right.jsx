@@ -8,11 +8,9 @@ class Right extends Component {
   };
   render() {
     return (
-      <div style={this.styles} className="col">
-        <div id="rightPanel">
-          <RightTop />
-          <RightBot />
-        </div>
+      <div id="rightPanel">
+        <RightTop />
+        <RightBot />
       </div>
     );
   }

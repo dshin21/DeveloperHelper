@@ -12,11 +12,10 @@ class RightBot extends Component {
   state = {};
   render() {
     return (
-      <div id="rightBot">
-        <textarea
-          style={{ width: "100%", height: "100%" }}
-          defaultValue="The print function for JS is console.log();"
-        />
+      <div id="rightBot" className="boxShadow">
+        <div className="textAreaContainer">
+          <textarea defaultValue="The print function for JS is console.log();" />
+        </div>
       </div>
     );
   }

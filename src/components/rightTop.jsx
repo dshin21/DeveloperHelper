@@ -60,8 +60,8 @@ class RightTop extends Component {
     const { classes } = this.props;
 
     return (
-      <div id="rightTop">
-        <div className="container">
+      <div id="rightTop" className="boxShadow">
+        <div className="listContainer">
           <List className={"a"}>
             {this.state.list.map(value => (
               <ListItem key={value} role={undefined} dense button>
@@ -89,14 +89,17 @@ class RightTop extends Component {
             ))}
           </List>
         </div>
-        <Fab
-          style={{ padding: 0, margin: 0 }}
-          className={"fab"}
-          color="secondary"
-          onClick={this.buttonClick()}
-        >
-          <AddIcon />
-        </Fab>
+        <div id="addButtonContainer">
+          <Fab
+            id="addButton"
+            style={{ padding: 0, margin: 0 }}
+            className={"fab"}
+            color="secondary"
+            onClick={this.buttonClick()}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
       </div>
     );
   }
