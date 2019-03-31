@@ -15,7 +15,22 @@ export class LanguageCard extends Component {
     };
 
     onClickCard = () => {
-        //TODO: when clicked, fill all search bars w/ the language
+        let link;
+        if (this.state.languageName === 'js')
+            link = `https://developer.mozilla.org/en-US/docs/Web/JavaScript`;
+        if (this.state.languageName === 'py')
+            link = `https://docs.python.org/3/reference/index.html`;
+        if (this.state.languageName === 'java')
+            link = `https://docs.oracle.com/javase/tutorial/index.html`;
+        if (this.state.languageName === 'html')
+            link = `https://developer.mozilla.org/en-US/docs/Web/HTML`;
+        if (this.state.languageName === 'css')
+            link = `https://developer.mozilla.org/en-US/docs/Web/CSS`;
+        if (this.state.languageName === 'cpp')
+            link = `https://en.cppreference.com/w/`;
+
+        let win = window.open(link, '_blank');
+        win.focus();
     };
 
     render() {
