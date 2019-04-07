@@ -17,44 +17,46 @@ const styles = theme => ({
 class RightTop extends Component {
   state = {
     taskComplete: 0,
-    // checked: [0],
-    list: [0]
+    list: [{ id: 0, value: "test" }, { id: 2, value: "test1" }]
   };
   buttonClick = () => () => {
     console.log("clieck");
     const { list } = this.state;
     const newList = [...list];
     if (list.length != 0) {
-      newList.push(list[list.length - 1] + 1);
+      newList.push({ id: list[list.length - 1].id + 1, value: "test" });
     } else {
-      newList.push(0);
+      newList.push({ id: 0, value: "test" });
     }
     this.setState({
       list: newList
     });
   };
   handleToggle = value => () => {
-    // const { checked, list } = this.state;
     const { list, taskComplete } = this.state;
-    const currentIndex = list.indexOf(value);
-    // const newChecked = [...checked];
-    const newList = [...list];
+    const newList = list.filter(element => {
+      return element.id != value;
+    });
     let newTaskComplete = taskComplete;
     newTaskComplete++;
-    // if (currentIndex === -1) {
-    //   newChecked.push(value);
-    //   newList.splice(currentIndex, 1);
-    // } else {
-    //   newChecked.splice(currentIndex, 1);
-    //
-    // }
-    newList.splice(currentIndex, 1);
+    // newList.splice(currentIndex, 1);
     this.setState({
-      // checked: newChecked,
       taskComplete: newTaskComplete,
       list: newList
     });
   };
+  onTextChange(e, id) {
+    console.log(e.target.value);
+    console.log(id);
+    const { list } = this.state;
+    const newList = [...list];
+    newList.forEach(element => {
+      if (element.id == id) element.value = e.target.value;
+    });
+    this.setState({
+      list: newList
+    });
+  }
 
   render() {
     const { classes } = this.props;
@@ -64,27 +66,24 @@ class RightTop extends Component {
         <div className="listContainer">
           <List className={"a"}>
             {this.state.list.map(value => (
-              <ListItem key={value} role={undefined} dense button>
+              <ListItem key={value.id} role={undefined} dense button>
                 <Checkbox
                   checked={false}
                   tabIndex={-1}
                   disableRipple
-                  onClick={this.handleToggle(value)}
+                  onClick={this.handleToggle(value.id)}
                 />
 
                 <TextField
                   id="standard-bare"
                   className={classes.textField}
-                  defaultValue="Bare"
+                  // value={value.value}
+                  onChange={event => {
+                    this.onTextChange(event, value.id);
+                  }}
                   margin="normal"
                   fullWidth={true}
                 />
-                {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
-                {/* <ListItemSecondaryAction>
-              <IconButton aria-label="Comments">
-                <CommentIcon />
-              </IconButton>
-            </ListItemSecondaryAction> */}
               </ListItem>
             ))}
           </List>

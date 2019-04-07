@@ -9,6 +9,7 @@ class Right extends Component {
   render() {
     return (
       <div id="rightPanel">
+        <button className="boxShadow">save</button>
         <RightTop />
         <RightBot />
       </div>
