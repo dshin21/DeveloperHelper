@@ -14,20 +14,20 @@ class Right extends Component {
 
   componentDidMount() {
     //add localstorage
-    // localStorage.setItem("userId", "1000");
+    localStorage.setItem("userId", "1000");
     let userId = localStorage.getItem("userId");
     console.log(userId);
     if (userId != null)
       fetch("http://18.217.49.198:3000/choose", {
         method: "post",
-        body: JSON.stringify({ userId: userId }),
+        body: JSON.stringify({ userId: "1000" }),
         headers: { "Content-Type": "application/json" }
       })
         .then(res => res.json())
         .then(
           result => {
-            if (result.list !== undefined) {
-              console.log(result);
+            console.log(result);
+            if (result.todo !== undefined) {
               this.setState({
                 list: JSON.parse(result.todo).list,
                 textArea: result.notes,
