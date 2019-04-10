@@ -135,7 +135,7 @@ void Client::init_client_ui()
 -- RETURNS:     void
 --
 -- NOTES:
---              This is the  QT slot function. It will connect the buttons in local playback panel.
+--              This is the  QT slot function. It will connect the buttons in local playback panel to slot function.
 ----------------------------------------------------------------------------------------------------------------------*/
 void Client::init_local_playback_ui()
 {
@@ -152,12 +152,14 @@ void Client::init_local_playback_ui()
 --
 -- PROGRAMMER:  Ziqian Zhang, Daniel Shin
 --
--- INTERFACE:   void Client::init_stream_from_server_ui()
+-- INTERFACE:   void Client::init_stream_from_server_ui(QList<QString> received_playlist)
+--                      received_playlist: is QList that store all the playlist.
 --
 -- RETURNS:     void
 --
 -- NOTES:
---              This is the  QT slot function. It will connect the buttons in Stream panel.
+--              This is the  QT slot function. It will connect the buttons in Stream panel to slot function. 
+--              It will populate the item in stream combo box.
 ----------------------------------------------------------------------------------------------------------------------*/
 void Client::init_stream_from_server_ui(QList<QString> received_playlist)
 {
@@ -170,6 +172,24 @@ void Client::init_stream_from_server_ui(QList<QString> received_playlist)
         ui->stream_combo_box->addItem(received_playlist[i]);
 }
 
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    init_download_ui
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   void Client::init_download_ui(QList<QString> received_playlist)
+--                      received_playlist: is QList that store all the playlist.
+--
+-- RETURNS:     void
+--
+-- NOTES:
+--              This is the  QT slot function.  It connect download panel button with slot functipon. 
+--              It will populate the item in stream combo box.
+----------------------------------------------------------------------------------------------------------------------*/
 void Client::init_download_ui(QList<QString> received_playlist)
 {
     connect(ui->btn_download, &QPushButton::clicked, download, &DownLoad::slot_stream_onclick_download);
@@ -180,6 +200,24 @@ void Client::init_download_ui(QList<QString> received_playlist)
         ui->download_combo_box->addItem(received_playlist[i]);
 }
 
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    init_voice_ui
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   void Client::init_voice_ui(QList<QString> received_ip_list)
+--                      received_ip_list: is QList that store all the peer IP.
+--
+-- RETURNS:     void
+--
+-- NOTES:
+--              This is the  QT slot function.  It connect voice panel button with slot functipon. 
+--              It will populate the item in stream combo box.
+----------------------------------------------------------------------------------------------------------------------*/
 void Client::init_voice_ui(QList<QString> received_ip_list)
 {
     connect(ui->voice_combo_box, &QComboBox::currentTextChanged, voice, &Voice::slot_get_voice_combo_box_text);
@@ -196,6 +234,23 @@ void Client::init_voice_ui(QList<QString> received_ip_list)
     }
 }
 
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    slot_local_playback_onclick_choose_song
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   void Client::slot_local_playback_onclick_choose_song()
+--                      
+--
+-- RETURNS:     void
+--
+-- NOTES:
+--              This is the  QT slot function.  This will open a .wav file loaclly.
+----------------------------------------------------------------------------------------------------------------------*/
 void Client::slot_local_playback_onclick_choose_song()
 {
     local_playback->current_file = QFileDialog::getOpenFileName(this,
@@ -203,7 +258,24 @@ void Client::slot_local_playback_onclick_choose_song()
                                                                 "./",
                                                                 nullptr);
 }
-
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    slot_client_connect_to_server
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   void Client::slot_client_connect_to_server()
+--                      
+--
+-- RETURNS:     void
+--
+-- NOTES:
+--              This is the  QT slot function.  This function connect the signal tcp socket ready with
+--              slot fetch data from serve
+----------------------------------------------------------------------------------------------------------------------*/
 void Client::slot_client_connect_to_server()
 {
     connect(tcp_socket, &QIODevice::readyRead, this, &Client::slot_client_received_data_from_server);
@@ -214,7 +286,24 @@ void Client::slot_client_connect_to_server()
 
     tcp_socket->connectToHost(QHostAddress(server_ip), server_port);
 }
-
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    slot_client_received_data_from_server
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   void Client::slot_client_received_data_from_server()
+--                      
+--
+-- RETURNS:     void
+--
+-- NOTES:
+--              This is the  QT slot function.  This function will wait for receieve signal and 
+--              connect them to process callback
+----------------------------------------------------------------------------------------------------------------------*/
 void Client::slot_client_received_data_from_server()
 {
     QString received_data_string = tcp_socket->peek(1);
@@ -233,7 +322,24 @@ void Client::slot_client_received_data_from_server()
         qDebug() << received_data_string;
     }
 }
-
+/*------------------------------------------------------------------------------------------------------------------
+-- FUNCTION:    remove_header_info
+--
+-- DATE:        Mar.25, 2019
+--
+-- DESIGNER:    Ziqian Zhang, Daniel Shin
+--
+-- PROGRAMMER:  Ziqian Zhang, Daniel Shin
+--
+-- INTERFACE:   QList<QString> Client::remove_header_info(QString received_data_string)
+--                      
+--
+-- RETURNS:     QList<QString>
+--                     QList of new list whice hearder get removed.
+--
+-- NOTES:
+--              This is the  utility function. This function will remove the header from Messgae from server.
+----------------------------------------------------------------------------------------------------------------------*/
 QList<QString> Client::remove_header_info(QString received_data_string)
 {
     QString temp = received_data_string;
