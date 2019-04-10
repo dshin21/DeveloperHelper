@@ -15,33 +15,49 @@ class Right extends Component {
   componentDidMount() {
     //add localstorage
     // localStorage.setItem("userId", "1000");
-    let userId = localStorage.getItem("userId");
-    console.log(userId);
-    if (userId != null)
-      fetch("http://18.217.49.198:3000/choose", {
-        method: "post",
-        body: JSON.stringify({ userId: userId }),
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(res => res.json())
-        .then(
-          result => {
-            if (result.list !== undefined) {
-              console.log(result);
-              this.setState({
-                list: JSON.parse(result.todo).list,
-                textArea: result.notes,
-                taskComplete: JSON.parse(result.todo).taskComplete,
-                userId: userId
-              });
-            } else {
-              this.setState({
-                userId: userId
-              });
-            }
-          },
-          error => {}
-        );
+    // let userId = localStorage.getItem("userId");
+    // console.log(userId);
+    // if (userId != null)
+    let userId = null;
+    fetch("http://18.217.49.198:3000/whoami", {
+      method: "post",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          if (result.userId !== undefined) {
+            userId = result.userId;
+            fetch("http://18.217.49.198:3000/choose", {
+              method: "post",
+              body: JSON.stringify({ userId: userId }),
+              headers: { "Content-Type": "application/json" }
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log(result);
+                  if (result.todo !== undefined) {
+                    this.setState({
+                      list: JSON.parse(result.todo).list,
+                      textArea: result.notes,
+                      taskComplete: JSON.parse(result.todo).taskComplete,
+                      userId: userId
+                    });
+                  } else {
+                    this.setState({
+                      userId: userId
+                    });
+                  }
+                },
+                error => {}
+              );
+          } else {
+          }
+        },
+        error => {}
+      );
   }
 
   logout = () => {
@@ -86,7 +102,7 @@ class Right extends Component {
   };
   loginOnClick = () => () => {
     console.log("login");
-    window.location = "http://www.google.com";
+    window.location = "https://badgebook-core.azurewebsites.net/External/Login";
   };
   handleToggle = value => () => {
     const { list, taskComplete } = this.state;
