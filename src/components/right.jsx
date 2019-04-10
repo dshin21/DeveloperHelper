@@ -38,7 +38,7 @@ class Right extends Component {
               .then(
                 result => {
                   console.log(result);
-                  if (result.todo !== undefined) {
+                  if (result.todo !== undefined && result.todo !== "empty") {
                     this.setState({
                       list: JSON.parse(result.todo).list,
                       textArea: result.notes,
