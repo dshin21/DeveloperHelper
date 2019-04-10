@@ -29,31 +29,33 @@ class Right extends Component {
           console.log(result);
           if (result.userId !== undefined) {
             userId = result.userId;
-            fetch("http://18.217.49.198:3000/choose", {
-              method: "post",
-              body: JSON.stringify({ userId: userId }),
-              headers: { "Content-Type": "application/json" }
-            })
-              .then(res => res.json())
-              .then(
-                result => {
-                  console.log(result);
-                  if (result.todo !== undefined && result.todo !== "empty") {
-                    this.setState({
-                      list: JSON.parse(result.todo).list,
-                      textArea: result.notes,
-                      taskComplete: JSON.parse(result.todo).taskComplete,
-                      userId: userId
-                    });
-                  } else {
-                    this.setState({
-                      userId: userId
-                    });
-                  }
-                },
-                error => {}
-              );
-          } else {
+            console.log(userId);
+            if (userId !== "-1") {
+              fetch("http://18.217.49.198:3000/choose", {
+                method: "post",
+                body: JSON.stringify({ userId: userId }),
+                headers: { "Content-Type": "application/json" }
+              })
+                .then(res => res.json())
+                .then(
+                  result => {
+                    console.log(result);
+                    if (result.todo !== undefined && result.todo !== "empty") {
+                      this.setState({
+                        list: JSON.parse(result.todo).list,
+                        textArea: result.notes,
+                        taskComplete: JSON.parse(result.todo).taskComplete,
+                        userId: userId
+                      });
+                    } else {
+                      this.setState({
+                        userId: userId
+                      });
+                    }
+                  },
+                  error => {}
+                );
+            }
           }
         },
         error => {}
