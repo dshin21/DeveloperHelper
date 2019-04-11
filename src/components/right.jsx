@@ -88,6 +88,25 @@ class Right extends Component {
       }),
       notes: this.state.textArea
     };
+    fetch("https://badgebook-core.azurewebsites.net/External/AwardBadge", {
+      method: "post",
+      body: JSON.stringify({
+        UserId: this.state.userId,
+        CompletedTasks: this.state.taskComplete
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "External token"
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log("update successful to core!");
+        },
+        error => {}
+      );
+
     fetch("http://18.217.49.198:3000/update", {
       method: "post",
       body: JSON.stringify(jsonObj),
